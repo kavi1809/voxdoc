@@ -1,0 +1,31 @@
+services:
+  backend:
+    build: ./backend
+    env_file: ./backend/.env
+    environment:
+      # Container paths for the named volumes below.
+      UPLOAD_DIR: /app/uploads
+      CHROMA_PERSIST_DIR: /app/chroma_db
+      DATABASE_URL: sqlite:////app/data/voxdoc.db
+      CORS_ORIGINS: http://localhost:5173,http://localhost:3000
+    volumes:
+      - uploads:/app/uploads
+      - chroma:/app/chroma_db
+      - data:/app/data
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "5173:80"
+    restart: unless-stopped
+
+volumes:
+  uploads:
+  chroma:
+  data:
