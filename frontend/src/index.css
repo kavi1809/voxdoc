@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-slate-100 text-slate-900 antialiased;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2
+           text-sm font-medium transition disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-brand-600 text-white hover:bg-brand-700;
+  }
+  .btn-ghost {
+    @apply btn border border-slate-300 bg-white text-slate-700 hover:bg-slate-50;
+  }
+  .input {
+    @apply w-full rounded-lg border border-slate-300 px-3 py-2 text-sm
+           outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-100;
+  }
+  .card {
+    @apply rounded-xl border border-slate-200 bg-white shadow-sm;
+  }
+}
+
+/* Markdown answers render inside .prose-answer */
+.prose-answer p { @apply mb-2 last:mb-0; }
+.prose-answer ul { @apply mb-2 list-disc pl-5; }
+.prose-answer ol { @apply mb-2 list-decimal pl-5; }
+.prose-answer code { @apply rounded bg-slate-100 px-1 py-0.5 text-[0.85em]; }
+.prose-answer pre { @apply mb-2 overflow-x-auto rounded-lg bg-slate-900 p-3 text-xs text-slate-100; }
+.prose-answer pre code { @apply bg-transparent p-0 text-inherit; }
+.prose-answer table { @apply mb-2 block w-full overflow-x-auto text-left text-xs; }
+.prose-answer th, .prose-answer td { @apply border border-slate-200 px-2 py-1; }
+.prose-answer strong { @apply font-semibold; }
